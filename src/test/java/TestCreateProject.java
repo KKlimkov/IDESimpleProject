@@ -144,7 +144,7 @@ public class TestCreateProject {
         Thread.sleep(100);
 
         WebElement treeElement8 = driver2.findElementByXPath("//*[contains(@Name, 'Библиотеки.BaseObjects.Объекты.Насос')]");
-        WebElement treeElement9 = driver2.findElementByName("'Объекты' (Id=60 Тип=MasterSCADA.Objects)");
+        WebElement treeElement9 = driver2.findElementByName("'Объекты' (Id=64 Тип=MasterSCADA.Objects)");
 
         //Вытаскиваем на окно кнопку с фиксацией
         //WebElement treeElement4 = driver2.findElementByAccessibilityId("MainTabControl");
@@ -224,31 +224,54 @@ public class TestCreateProject {
 
     public void GetIdElements() throws InterruptedException {
         Actions actionProvider = new Actions(driver2);
+        WebElement treeElement24 = driver2.findElementByAccessibilityId("SimpleTreeButton");
+        Boolean isPresent = driver2.findElements(By.xpath("//*[contains(@Name, 'Система.АРМ 1.Службы.Межузловая связь')]")).size() > 0;
+        System.out.println(isPresent);
+        if (!isPresent) treeElement24.click();
+        Thread.sleep(1000);
+        WebElement treeElement1 = driver2.findElementByXPath("//*[contains(@Name, 'Система.АРМ 1.Графический интерфейс.Окна.Окно 1')]");
+        actionProvider.contextClick(treeElement1).perform();
+        driver2.findElementByName("Открыть в панели веток").click();
+        WebElement treeElement2 = driver2.findElementByName("Схема");
+        actionProvider.doubleClick(treeElement2).perform();
         WebElement treeElement17 = driver2.findElementByXPath("//*[contains(@Name, 'Система.АРМ 1.Параметры.Параметр 1')]");
         WebElement treeElement18 = driver2.findElementByXPath("//*[contains(@Name, 'Объекты.Насос 1')]");
+        WebElement treeElement19 = driver2.findElementByXPath("//*[contains(@Name, 'Система.АРМ 1.Графический интерфейс.Окна.Окно 1.Схема.Насос горизонт 1')]");
         String s1 = treeElement17.getAttribute("Name");
         String s2 = treeElement18.getAttribute("Name");
+        String s5 = treeElement19.getAttribute("Name");
         String s3 = null;
         String s4 = null;
+        String s6 = null;
+
         Pattern pattern = Pattern.compile("\\d+");
+
         Matcher matcher = pattern.matcher(s1);
         while (matcher.find()) {
-            s3 = matcher.group();
-        }
+            s3 = matcher.group();        }
         System.out.println(s3);
+
         Matcher matcher2 = pattern.matcher(s2);
         while (matcher2.find()) {
             s4 = matcher2.group();
         }
         System.out.println(s4);
 
-        try (FileWriter writer = new FileWriter("C:\\Users\\kiril\\Desktop\\Autotests\\IDE\\Data.txt", false)) {
+        Matcher matcher3 = pattern.matcher(s5);
+        while (matcher3.find()) {
+            s6 = matcher3.group();
+        }
+        System.out.println(s6);
+
+        try (FileWriter writer = new FileWriter("C:\\Users\\kiril\\Desktop\\Autotests\\IDE\\Data.csv", false)) {
             // запись всей строки
 
             writer.write(s3);
             // запись по символам
-            writer.append('\n');
+            writer.append(',');
             writer.write(s4);
+            writer.append(',');
+            writer.write(s6);
             writer.flush();
         } catch (IOException ex) {
 
@@ -264,11 +287,7 @@ public class TestCreateProject {
     public void ChangeIpAndLaunch() throws InterruptedException {
         Actions actionProvider = new Actions(driver2);
 
-        WebElement treeElement24 = driver2.findElementByAccessibilityId("SimpleTreeButton");
-        Boolean isPresent = driver2.findElements(By.xpath("//*[contains(@Name, 'Система.АРМ 1.Службы.Межузловая связь')]")).size() > 0;
-        System.out.println(isPresent);
-        if (!isPresent) treeElement24.click();
-        Thread.sleep(1000);
+
 
         WebElement treeElement20 = driver2.findElementByXPath("//*[contains(@Name, 'Система.АРМ 1.Службы')]");
         //WebElement treeElement15 = driver2.findElementByName("Службы");
@@ -298,4 +317,6 @@ public class TestCreateProject {
 
 
     }
+
+
 }
