@@ -6,6 +6,8 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
+
+import java.awt.im.InputContext;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -294,8 +296,15 @@ public class IDESteps {
     }
 
     @Step("Проверка клавиатуры")
-    public static void ChangeLanguageKeybord() {
-        String selectAll = Keys.chord(Keys.ALT, Keys.SHIFT);
-        actionProvider.sendKeys(selectAll).perform();
+    public static void ChangeLanguageKeybord(String Lang) {
+        InputContext context = InputContext.getInstance();
+        String CurrentLang = context.getLocale().toString();
+        boolean b = Lang.equals("ru") & CurrentLang.equals("en_US");
+        boolean c = Lang.equals("en") & CurrentLang.equals("ru_RU");
+        if (b || c)
+        {
+            String selectAll = Keys.chord(Keys.ALT, Keys.SHIFT);
+            actionProvider.sendKeys(selectAll).perform();
+        }
     }
 }

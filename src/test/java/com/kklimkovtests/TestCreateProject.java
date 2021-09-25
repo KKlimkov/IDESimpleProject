@@ -96,7 +96,7 @@ public class TestCreateProject {
         IDESteps.OpenNextTreeElementByArrow("//*[contains(@Name, 'Система.АРМ 1.Службы.Межузловая связь')]");
         IDESteps.DoubleClickTreeElement("//*[contains(@Name, 'Система.АРМ 1.Службы.Межузловая связь.Настройки')]");
         IDESteps.DoubleClickTreeElement("//*[contains(@Name, 'Система.АРМ 1.Службы.Межузловая связь.Настройки.IP адрес')]");
-        IDESteps.ChangeLanguageKeybord();
+        IDESteps.ChangeLanguageKeybord("en");
         IDESteps.SetValueInDialogWindow("127.0.0.1",host);
         IDESteps.RunRT();
         IDESteps.SendNewRTFiles();
