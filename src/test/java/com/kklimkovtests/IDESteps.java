@@ -14,6 +14,7 @@ import java.util.regex.Pattern;
 import io.qameta.allure.Step;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+
 public class IDESteps {
 
     public static WindowsDriver driver2 = null;
@@ -290,5 +291,11 @@ public class IDESteps {
             treeElement25.click();
         }
         else System.out.println("Обновление не требуется");
+    }
+
+    @Step("Проверка клавиатуры")
+    public static void ChangeLanguageKeybord() {
+        String selectAll = Keys.chord(Keys.ALT, Keys.SHIFT);
+        actionProvider.sendKeys(selectAll).perform();
     }
 }

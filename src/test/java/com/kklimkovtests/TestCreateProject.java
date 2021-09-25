@@ -36,7 +36,7 @@ public class TestCreateProject {
     @Tags({@Tag("IDE"),@Tag("Project")})
     @Order(2)
     public void Create() throws InterruptedException {
-        IDESteps.CreateProject("Тестовый проект",10);
+        IDESteps.CreateProject("Тестовый проект", 15000);
     }
 
     @DisplayName("Создание АРМа, окна и параметра")
@@ -96,6 +96,7 @@ public class TestCreateProject {
         IDESteps.OpenNextTreeElementByArrow("//*[contains(@Name, 'Система.АРМ 1.Службы.Межузловая связь')]");
         IDESteps.DoubleClickTreeElement("//*[contains(@Name, 'Система.АРМ 1.Службы.Межузловая связь.Настройки')]");
         IDESteps.DoubleClickTreeElement("//*[contains(@Name, 'Система.АРМ 1.Службы.Межузловая связь.Настройки.IP адрес')]");
+        IDESteps.ChangeLanguageKeybord();
         IDESteps.SetValueInDialogWindow("127.0.0.1",host);
         IDESteps.RunRT();
         IDESteps.SendNewRTFiles();
