@@ -251,7 +251,7 @@ public class IDESteps {
     }
 
     @Step("Запись в файл ID по ХPath")
-    public static void WriteIdByPath(String Path, String FilePath, Boolean Last) throws InterruptedException {
+    public static void WriteIdByPath(String Path, String FilePath, Boolean First, Boolean Last) throws InterruptedException {
         WebElement treeElement17 = driver2.findElementByXPath(Path);
         String s1 = treeElement17.getAttribute("Name");
         String s2 = null;
@@ -262,7 +262,7 @@ public class IDESteps {
             s2 = matcher.group();        }
         System.out.println(s2);
 
-        try (FileWriter writer = new FileWriter(FilePath, true)) {
+        try (FileWriter writer = new FileWriter(FilePath, First)) {
             writer.write(s2);
             if (!Last) writer.append(',');
             writer.flush();

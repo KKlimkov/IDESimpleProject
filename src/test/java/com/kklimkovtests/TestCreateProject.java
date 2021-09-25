@@ -81,9 +81,9 @@ public class TestCreateProject {
         IDESteps.ShowFullTree();
         IDESteps.OpenElementInNewBranch("//*[contains(@Name, 'Система.АРМ 1.Графический интерфейс.Окна.Окно 1')]");
         IDESteps.DoubleClickTreeElementName("Схема");
-        IDESteps.WriteIdByPath("//*[contains(@Name, 'Система.АРМ 1.Параметры.Параметр 1')]","C:\\Users\\Public\\Autotests\\Data.csv", false);
-        IDESteps.WriteIdByPath("//*[contains(@Name, 'Объекты.Насос 1')]","C:\\Users\\Public\\Autotests\\Data.csv", false);
-        IDESteps.WriteIdByPath("//*[contains(@Name, 'Система.АРМ 1.Графический интерфейс.Окна.Окно 1.Схема.Насос горизонт 1')]","C:\\Users\\Public\\Autotests\\Data.csv",true);
+        IDESteps.WriteIdByPath("//*[contains(@Name, 'Система.АРМ 1.Параметры.Параметр 1')]","C:\\Users\\Public\\Autotests\\Data.csv", false,false);
+        IDESteps.WriteIdByPath("//*[contains(@Name, 'Объекты.Насос 1')]","C:\\Users\\Public\\Autotests\\Data.csv", true,false);
+        IDESteps.WriteIdByPath("//*[contains(@Name, 'Система.АРМ 1.Графический интерфейс.Окна.Окно 1.Схема.Насос горизонт 1')]","C:\\Users\\Public\\Autotests\\Data.csv",true,true);
     }
 
     @DisplayName("Смена ip и запуск проекта")
@@ -101,4 +101,5 @@ public class TestCreateProject {
         IDESteps.RunRT();
         IDESteps.SendNewRTFiles();
     }
+
 }
