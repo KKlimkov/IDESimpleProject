@@ -97,9 +97,11 @@ public class TestCreateProject {
         //IDESteps.DoubleClickTreeElement("//*[contains(@Name, 'Система.АРМ 1.Службы')]");
         //IDESteps.OpenNextTreeElementByArrow("//*[contains(@Name, 'Система.АРМ 1.Службы.Межузловая связь')]");
         //IDESteps.DoubleClickTreeElement("//*[contains(@Name, 'Система.АРМ 1.Службы.Межузловая связь.Настройки')]");
-        IDESteps.DoubleClickTreeElementName("IP адрес");
+        //IDESteps.DoubleClickTreeElementName("IP адрес");
         IDESteps.ChangeLanguageKeybord("en");
-        IDESteps.SetValueInDialogWindow("127.0.0.1",host);
+        IDESteps.ChangeLanguageKeybord("ru");
+        IDESteps.ChangeLanguageKeybord("en");
+        //IDESteps.SetValueInDialogWindow("127.0.0.1",host);
  //       IDESteps.SaveProject();
  //       IDESteps.RunRT();
  //       IDESteps.SendNewRTFiles();
