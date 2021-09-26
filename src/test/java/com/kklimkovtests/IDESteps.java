@@ -234,6 +234,7 @@ public class IDESteps {
         WebElement treeElement12 = driver2.findElementByXPath(Xpath);
         actionProvider.doubleClick(treeElement12).perform();
         Thread.sleep(1000);
+        System.out.println("Выполнен двойной клик по элементу по XPath");
     }
 
     @Step("Двойнок клик по элементу дерева по Name")
@@ -241,6 +242,7 @@ public class IDESteps {
         WebElement treeElement12 = driver2.findElementByName(Name);
         actionProvider.doubleClick(treeElement12).perform();
         Thread.sleep(1000);
+        System.out.println("Выполнен двойной клик по элементу по Name");
     }
 
     @Step("Открыть следуюший элемент дерева с помощью ctrl+arrow")
@@ -257,7 +259,7 @@ public class IDESteps {
     public static void ShowFullTree() throws InterruptedException {
         WebElement treeElement24 = driver2.findElementByAccessibilityId("SimpleTreeButton");
         Boolean isPresent = driver2.findElements(By.xpath("//*[contains(@Name, 'Система.АРМ 1.Службы.Межузловая связь')]")).size() > 0;
-        System.out.println("Открыто полноное дерево " + isPresent);
+        System.out.println("Открыто полное дерево " + isPresent);
         if (!isPresent) treeElement24.click();
         Thread.sleep(1000);
     }
@@ -267,6 +269,7 @@ public class IDESteps {
         WebElement treeElement12 = driver2.findElementByXPath(Xpath);
         actionProvider.contextClick(treeElement12).perform();
         driver2.findElementByName("Открыть в панели веток").click();
+        System.out.println("Выполнено открытие элемента в новой панели веток");
     }
 
     @Step("Запись в файл ID по ХPath")
