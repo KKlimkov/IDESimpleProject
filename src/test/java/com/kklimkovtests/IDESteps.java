@@ -6,7 +6,6 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
-
 import java.awt.im.InputContext;
 import java.io.*;
 import java.net.MalformedURLException;
@@ -94,6 +93,7 @@ public class IDESteps {
         actionProvider.contextClick(treeElement).perform();
         driver2.findElementByName("Добавить").click();
         driver2.findElementByName("АРМ").click();
+        Thread.sleep(500);
     }
 
     @Step("Добавление окна")
@@ -103,17 +103,14 @@ public class IDESteps {
         driver2.findElementByName("Добавить").click();
         driver2.findElementByName("Окно").click();
         System.out.println("Добавлены АРМ и Окно АРМа");
+        Thread.sleep(500);
     }
 
     @Step("Добавление параметра")
     public static void AddParam(String Where, String Type) throws InterruptedException {
         WebElement treeElement = driver2.findElementByName(Where);
         actionProvider.contextClick(treeElement).perform();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Thread.sleep(1000);
         driver2.findElementByName("Добавить").click();
         driver2.findElementByName("Параметр").click();
         driver2.findElementByName(Type).click();
@@ -258,9 +255,10 @@ public class IDESteps {
     @Step("Отображение полного дерева")
     public static void ShowFullTree() throws InterruptedException {
         WebElement treeElement24 = driver2.findElementByAccessibilityId("SimpleTreeButton");
-        Boolean isPresent = driver2.findElements(By.xpath("//*[contains(@Name, 'Система.АРМ 1.Службы.Межузловая связь')]")).size() > 0;
-        System.out.println("Открыто полное дерево " + isPresent);
-        if (!isPresent) treeElement24.click();
+        String test = treeElement24.getAttribute("Toggle.ToggleState");
+        System.out.println(test);
+        if (test.equals("1")) treeElement24.click();
+        System.out.println("Открыто полное дерево ");
         Thread.sleep(1000);
     }
 
@@ -296,6 +294,7 @@ public class IDESteps {
 
     @Step("Задать свойство в диалоговом окне редактирования параметра")
     public static void SetValueInDialogWindow(String WhatChange, String ByChange) throws InterruptedException {
+        ChangeLanguageKeybord("en");
         WebElement treeElement26 = driver2.findElementByName(WhatChange);
         actionProvider.click(treeElement26).sendKeys(ByChange).perform();
         actionProvider.sendKeys(Keys.ENTER).perform();
@@ -306,7 +305,7 @@ public class IDESteps {
     public static void RunRT() throws InterruptedException {
         actionProvider.sendKeys(Keys.F5).perform();
         System.out.println("Выполнен запуск проекта по F5");
-        Thread.sleep(10000);
+        Thread.sleep(15000);
     }
 
     @Step("Обновить исполнительную систему")
@@ -331,8 +330,21 @@ public class IDESteps {
     public static void CloseProject() throws InterruptedException {
         WebElement treeElement25 = driver2.findElementByAccessibilityId("PART_CloseButton");
         treeElement25.click();
+        Thread.sleep(2000);
         System.out.println("Выполнено закрытие проекта");
     }
 
+    @Step("Запустить драйвер")
+    public static void StartDriver() throws InterruptedException, IOException {
+        String command = "C:\\Program Files (x86)\\Windows Application Driver\\WinAppDriver.exe";
+        Runtime.getRuntime().exec(command);
+        Thread.sleep(1000);
+    }
+
+    @Step("Остановить драйвер")
+    public static void StopDriver() throws InterruptedException {
+        driver2.close();
+        driver2.quit();
+    }
 
 }

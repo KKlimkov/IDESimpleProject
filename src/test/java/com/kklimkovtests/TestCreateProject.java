@@ -15,7 +15,8 @@ import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 public class TestCreateProject {
 
     @BeforeAll
-    static void setUp() throws InterruptedException {
+    static void setUp() throws InterruptedException, IOException {
+        //IDESteps.StartDriver();
         IDESteps.LaunchAPP("Root","10");
     }
     String host = System.getProperty("HostIP");
@@ -95,8 +96,7 @@ public class TestCreateProject {
         IDESteps.DoubleClickTreeElement("//*[contains(@Name, 'Система.АРМ 1.Службы')]");
         IDESteps.OpenNextTreeElementByArrow("//*[contains(@Name, 'Система.АРМ 1.Службы.Межузловая связь')]");
         IDESteps.DoubleClickTreeElement("//*[contains(@Name, 'Система.АРМ 1.Службы.Межузловая связь.Настройки')]");
-        IDESteps.DoubleClickTreeElement("//*[contains(@Name, 'Система.АРМ 1.Службы.Межузловая связь.Настройки.IP адрес')]");
-        IDESteps.ChangeLanguageKeybord("en");
+        IDESteps.DoubleClickTreeElementName("IP адрес");
         IDESteps.SetValueInDialogWindow("127.0.0.1",host);
         IDESteps.SaveProject();
         IDESteps.RunRT();
@@ -110,5 +110,12 @@ public class TestCreateProject {
     @Order(8)
         public void СloseProject() throws InterruptedException {
             IDESteps.CloseProject();
+            IDESteps.CloseProject();
         }
+
+    @AfterAll
+       static void Stop() throws InterruptedException {
+           IDESteps.StopDriver();
+    }
+
 }
