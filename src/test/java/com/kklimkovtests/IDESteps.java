@@ -100,10 +100,13 @@ public class IDESteps {
     public static void AddWindow(String Where) throws InterruptedException {
         WebElement treeElement = driver2.findElementByName(Where);
         actionProvider.contextClick(treeElement).perform();
-        driver2.findElementByName("Добавить").click();
-        driver2.findElementByName("Окно").click();
-        System.out.println("Добавлены АРМ и Окно АРМа");
         Thread.sleep(500);
+        driver2.findElementByName("Добавить").click();
+        Thread.sleep(500);
+        driver2.findElementByName("Окно").click();
+        Thread.sleep(500);
+        System.out.println("Добавлены АРМ и Окно АРМа");
+
     }
 
     @Step("Добавление параметра")
