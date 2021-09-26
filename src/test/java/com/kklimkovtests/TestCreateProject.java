@@ -99,11 +99,11 @@ public class TestCreateProject {
         //IDESteps.DoubleClickTreeElement("//*[contains(@Name, 'Система.АРМ 1.Службы.Межузловая связь.Настройки')]");
         IDESteps.DoubleClickTreeElementName("IP адрес");
         IDESteps.SetValueInDialogWindow("127.0.0.1",host);
-        IDESteps.SaveProject();
-        IDESteps.RunRT();
-        IDESteps.SendNewRTFiles();
+ //       IDESteps.SaveProject();
+ //       IDESteps.RunRT();
+ //       IDESteps.SendNewRTFiles();
     }
-
+/*
     @DisplayName("Закрытие проекта")
     @Test
     @Story("BaseObjects Pump")
@@ -113,7 +113,7 @@ public class TestCreateProject {
             IDESteps.CloseProject();
             IDESteps.CloseProject();
         }
-
+*/
     @AfterAll
        static void Stop() throws InterruptedException {
            IDESteps.StopDriver();
