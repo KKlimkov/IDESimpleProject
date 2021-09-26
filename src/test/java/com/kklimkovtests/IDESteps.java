@@ -60,17 +60,17 @@ public class IDESteps {
 
     @Step("Проверка клавиатуры")
     public static void ChangeLanguageKeybord(String Lang) throws InterruptedException {
-        InputContext context = InputContext.getInstance();
+        /*InputContext context = InputContext.getInstance();
         String CurrentLang = context.getLocale().toString();
         boolean b = Lang.equals("ru") & CurrentLang.equals("en_US");
         boolean c = Lang.equals("en") & CurrentLang.equals("ru_RU");
         System.out.println(CurrentLang+" "+b+" "+c);
         if (b || c)
-        {
+        {*/
             String selectAll = Keys.chord(Keys.ALT, Keys.SHIFT);
             actionProvider.sendKeys(selectAll).perform();
             System.out.println("Выполнено изменение раскладки клавиатуры");
-        }
+       // }
         Thread.sleep(500);
     }
 
