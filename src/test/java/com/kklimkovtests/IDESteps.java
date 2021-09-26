@@ -31,6 +31,7 @@ public class IDESteps {
         try {
             driver2 = new WindowsDriver(new URL("http://127.0.0.1:4723"), cap);
             actionProvider = new Actions(driver2);
+            System.out.println("Выполнено подключение к драйверу");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -57,26 +58,34 @@ public class IDESteps {
             {assertTrue(line.contains("Задачи, отвечающие заданным критериям, отсутствуют"));};
         }
     }
+
+    @Step("Проверка клавиатуры")
+    public static void ChangeLanguageKeybord(String Lang) throws InterruptedException {
+        InputContext context = InputContext.getInstance();
+        String CurrentLang = context.getLocale().toString();
+        boolean b = Lang.equals("ru") & CurrentLang.equals("en_US");
+        boolean c = Lang.equals("en") & CurrentLang.equals("ru_RU");
+        System.out.println(CurrentLang+" "+b+" "+c);
+        if (b || c)
+        {
+            String selectAll = Keys.chord(Keys.ALT, Keys.SHIFT);
+            actionProvider.sendKeys(selectAll).perform();
+            System.out.println("Выполнено изменение раскладки клавиатуры");
+        }
+        Thread.sleep(500);
+    }
+
     @Step("Создание проекта")
     public static void CreateProject(String NameProject, Integer Wait) throws InterruptedException {
         driver2.findElementByName("Создать").click();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Thread.sleep(1000);
         driver2.findElementByAccessibilityId("ProjectNameText").sendKeys(NameProject);
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Thread.sleep(1000);
         driver2.findElementByAccessibilityId("CreateButton").click();
-        try {
-            Thread.sleep(Wait);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Thread.sleep(1000);
+        actionProvider.sendKeys(Keys.ENTER).perform();
+        Thread.sleep(Wait);
+        System.out.println("Создан проект " + NameProject);
     }
 
     @Step("Создание АРМа")
@@ -93,7 +102,7 @@ public class IDESteps {
         actionProvider.contextClick(treeElement).perform();
         driver2.findElementByName("Добавить").click();
         driver2.findElementByName("Окно").click();
-
+        System.out.println("Добавлены АРМ и Окно АРМа");
     }
 
     @Step("Добавление параметра")
@@ -110,6 +119,7 @@ public class IDESteps {
         driver2.findElementByName(Type).click();
         actionProvider.sendKeys(Keys.ENTER).perform();
         Thread.sleep(100);
+        System.out.println("Добавлен параметр типа " + Type + "в" + Where);
     }
 
     @Step("Перенос элемента")
@@ -149,6 +159,7 @@ public class IDESteps {
                 .click()
                 .perform();
         actionProvider.click(treeElement3);
+        System.out.println("Выполнен перенос элемента");
     }
 
     @Step("Перенос элемента с действием")
@@ -201,6 +212,7 @@ public class IDESteps {
                 break;
         }
         actionProvider.click(treeElement3);
+        System.out.println("Выполнен перенос элемента с действием");
     }
 
     @Step("Раскрытие библиотеки BaseObject")
@@ -214,18 +226,21 @@ public class IDESteps {
         WebElement treeElement7 = driver2.findElementByXPath("//*[contains(@Name, 'Библиотеки."+LibraryName+".Объекты')]");
         actionProvider.doubleClick(treeElement7).perform();
         Thread.sleep(100);
+        System.out.println("Открыт библиотечный объект");
     }
 
     @Step("Двойнок клик по элементу дерева по Xpath")
     public static void DoubleClickTreeElement(String Xpath) throws InterruptedException {
         WebElement treeElement12 = driver2.findElementByXPath(Xpath);
         actionProvider.doubleClick(treeElement12).perform();
+        Thread.sleep(1000);
     }
 
     @Step("Двойнок клик по элементу дерева по Name")
     public static void DoubleClickTreeElementName(String Name) throws InterruptedException {
         WebElement treeElement12 = driver2.findElementByName(Name);
         actionProvider.doubleClick(treeElement12).perform();
+        Thread.sleep(1000);
     }
 
     @Step("Открыть следуюший элемент дерева с помощью ctrl+arrow")
@@ -234,13 +249,15 @@ public class IDESteps {
         actionProvider.click(treeElement21).sendKeys(Keys.CONTROL,Keys.ARROW_RIGHT).perform();
         actionProvider.sendKeys(Keys.INSERT).perform();
         actionProvider.sendKeys(Keys.CONTROL,Keys.INSERT).perform();
+        Thread.sleep(1000);
+        System.out.println("Выполнено открытие элемента дерева с помощью ctrl+стрелочка");
     }
 
     @Step("Отображение полного дерева")
     public static void ShowFullTree() throws InterruptedException {
         WebElement treeElement24 = driver2.findElementByAccessibilityId("SimpleTreeButton");
         Boolean isPresent = driver2.findElements(By.xpath("//*[contains(@Name, 'Система.АРМ 1.Службы.Межузловая связь')]")).size() > 0;
-        System.out.println(isPresent);
+        System.out.println("Открыто полноное дерево " + isPresent);
         if (!isPresent) treeElement24.click();
         Thread.sleep(1000);
     }
@@ -271,6 +288,7 @@ public class IDESteps {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
+        System.out.println("Произведена запись id в файл");
     }
 
     @Step("Задать свойство в диалоговом окне редактирования параметра")
@@ -278,11 +296,14 @@ public class IDESteps {
         WebElement treeElement26 = driver2.findElementByName(WhatChange);
         actionProvider.click(treeElement26).sendKeys(ByChange).perform();
         actionProvider.sendKeys(Keys.ENTER).perform();
+        System.out.println("Выполнено задание свойства в диалоговом окне");
     }
 
     @Step("Запустить RT")
     public static void RunRT() throws InterruptedException {
         actionProvider.sendKeys(Keys.F5).perform();
+        System.out.println("Выполнен запуск проекта по F5");
+        Thread.sleep(10000);
     }
 
     @Step("Обновить исполнительную систему")
@@ -295,16 +316,20 @@ public class IDESteps {
         else System.out.println("Обновление не требуется");
     }
 
-    @Step("Проверка клавиатуры")
-    public static void ChangeLanguageKeybord(String Lang) {
-        InputContext context = InputContext.getInstance();
-        String CurrentLang = context.getLocale().toString();
-        boolean b = Lang.equals("ru") & CurrentLang.equals("en_US");
-        boolean c = Lang.equals("en") & CurrentLang.equals("ru_RU");
-        if (b || c)
-        {
-            String selectAll = Keys.chord(Keys.ALT, Keys.SHIFT);
-            actionProvider.sendKeys(selectAll).perform();
-        }
+    @Step("Сохранить проект")
+    public static void SaveProject() throws InterruptedException {
+        String saveAll = Keys.chord(Keys.CONTROL, "s");
+        actionProvider.sendKeys(saveAll).perform();
+        Thread.sleep(500);
+        System.out.println("Выполнено сохранение проекта");
     }
+
+    @Step("Закрыть проект")
+    public static void CloseProject() throws InterruptedException {
+        WebElement treeElement25 = driver2.findElementByAccessibilityId("PART_CloseButton");
+        treeElement25.click();
+        System.out.println("Выполнено закрытие проекта");
+    }
+
+
 }

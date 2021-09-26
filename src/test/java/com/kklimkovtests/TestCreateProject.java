@@ -36,7 +36,7 @@ public class TestCreateProject {
     @Tags({@Tag("IDE"),@Tag("Project")})
     @Order(2)
     public void Create() throws InterruptedException {
-        IDESteps.CreateProject("Тестовый проект", 15000);
+        IDESteps.CreateProject("Тестовый проект", 20000);
     }
 
     @DisplayName("Создание АРМа, окна и параметра")
@@ -98,8 +98,17 @@ public class TestCreateProject {
         IDESteps.DoubleClickTreeElement("//*[contains(@Name, 'Система.АРМ 1.Службы.Межузловая связь.Настройки.IP адрес')]");
         IDESteps.ChangeLanguageKeybord("en");
         IDESteps.SetValueInDialogWindow("127.0.0.1",host);
+        IDESteps.SaveProject();
         IDESteps.RunRT();
         IDESteps.SendNewRTFiles();
     }
 
+    @DisplayName("Закрытие проекта")
+    @Test
+    @Story("BaseObjects Pump")
+    @Tags({@Tag("IDE"),@Tag("Close")})
+    @Order(8)
+        public void СloseProject() throws InterruptedException {
+            IDESteps.CloseProject();
+        }
 }
