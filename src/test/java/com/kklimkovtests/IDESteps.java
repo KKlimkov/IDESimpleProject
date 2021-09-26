@@ -253,11 +253,12 @@ public class IDESteps {
     }
 
     @Step("Отображение полного дерева")
-    public static void ShowFullTree() throws InterruptedException {
+    public static void TreeMode(String Mode) throws InterruptedException {
         WebElement treeElement24 = driver2.findElementByAccessibilityId("SimpleTreeButton");
         String test = treeElement24.getAttribute("Toggle.ToggleState");
         System.out.println(test);
-        if (test.equals("1")) treeElement24.click();
+        boolean b = (Mode.equals("Full") & test.equals("0")) || (Mode.equals("Usual") & test.equals("1"));
+        if (!b) treeElement24.click();
         System.out.println("Открыто полное дерево ");
         Thread.sleep(1000);
     }

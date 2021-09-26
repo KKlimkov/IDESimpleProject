@@ -46,6 +46,7 @@ public class TestCreateProject {
     @Tags({@Tag("IDE"),@Tag("ARM")})
     @Order(3)
     public void AddParamAndWindow() throws InterruptedException {
+        IDESteps.TreeMode("Usual");
         IDESteps.AddARM();
         IDESteps.AddWindow("АРМ 1");
         IDESteps.AddParam("АРМ 1","BOOL");
@@ -79,7 +80,7 @@ public class TestCreateProject {
     @Tags({@Tag("IDE"),@Tag("ID")})
     @Order(6)
     public void GetIdElements() throws InterruptedException {
-        IDESteps.ShowFullTree();
+        IDESteps.TreeMode("Full");
         IDESteps.OpenElementInNewBranch("//*[contains(@Name, 'Система.АРМ 1.Графический интерфейс.Окна.Окно 1')]");
         IDESteps.DoubleClickTreeElementName("Схема");
         IDESteps.WriteIdByPath("//*[contains(@Name, 'Система.АРМ 1.Параметры.Параметр 1')]","C:\\Users\\Public\\Autotests\\Data.csv", false,false);
