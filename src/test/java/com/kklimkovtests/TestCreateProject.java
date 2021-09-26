@@ -20,7 +20,7 @@ public class TestCreateProject {
         IDESteps.LaunchAPP("Root","10");
     }
     String host = System.getProperty("HostIP");
-/*
+
     @DisplayName("Запуск среды разработки и проверка процесса")
     @Test
     @Story("BaseObjects Pump")
@@ -87,26 +87,23 @@ public class TestCreateProject {
         IDESteps.WriteIdByPath("//*[contains(@Name, 'Объекты.Насос 1')]","C:\\Users\\Public\\Autotests\\Data.csv", true,false);
         IDESteps.WriteIdByPath("//*[contains(@Name, 'Система.АРМ 1.Графический интерфейс.Окна.Окно 1.Схема.Насос горизонт 1')]","C:\\Users\\Public\\Autotests\\Data.csv",true,true);
     }
-*/
+
     @DisplayName("Смена ip и запуск проекта")
     @Test
     @Story("BaseObjects Pump")
     @Tags({@Tag("IDE"),@Tag("IP")})
     @Order(7)
     public void ChangeIpAndLaunch() throws InterruptedException {
-        //IDESteps.DoubleClickTreeElement("//*[contains(@Name, 'Система.АРМ 1.Службы')]");
-        //IDESteps.OpenNextTreeElementByArrow("//*[contains(@Name, 'Система.АРМ 1.Службы.Межузловая связь')]");
-        //IDESteps.DoubleClickTreeElement("//*[contains(@Name, 'Система.АРМ 1.Службы.Межузловая связь.Настройки')]");
-        //IDESteps.DoubleClickTreeElementName("IP адрес");
-        IDESteps.ChangeLanguageKeybord("en");
-        IDESteps.ChangeLanguageKeybord("ru");
-        IDESteps.ChangeLanguageKeybord("en");
-        //IDESteps.SetValueInDialogWindow("127.0.0.1",host);
- //       IDESteps.SaveProject();
- //       IDESteps.RunRT();
- //       IDESteps.SendNewRTFiles();
+        IDESteps.DoubleClickTreeElement("//*[contains(@Name, 'Система.АРМ 1.Службы')]");
+        IDESteps.OpenNextTreeElementByArrow("//*[contains(@Name, 'Система.АРМ 1.Службы.Межузловая связь')]");
+        IDESteps.DoubleClickTreeElement("//*[contains(@Name, 'Система.АРМ 1.Службы.Межузловая связь.Настройки')]");
+        IDESteps.DoubleClickTreeElementName("IP адрес");
+        IDESteps.SetValueInDialogWindow("127.0.0.1",host);
+        IDESteps.SaveProject();
+        IDESteps.RunRT();
+        IDESteps.SendNewRTFiles();
     }
-/*
+
     @DisplayName("Закрытие проекта")
     @Test
     @Story("BaseObjects Pump")
@@ -116,7 +113,7 @@ public class TestCreateProject {
             IDESteps.CloseProject();
             IDESteps.CloseProject();
         }
-*/
+
     @AfterAll
        static void Stop() throws InterruptedException {
            IDESteps.StopDriver();

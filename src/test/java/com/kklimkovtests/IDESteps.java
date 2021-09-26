@@ -69,7 +69,7 @@ public class IDESteps {
         {*/
             String selectAll = Keys.chord(Keys.ALT, Keys.SHIFT);
             actionProvider.sendKeys(selectAll).perform();
-            System.out.println("Выполнено изменение раскладки клавиатуры");
+            System.out.println("Выполнено изменение раскладки клавиатуры на" + Lang);
        // }
         Thread.sleep(500);
     }
@@ -295,7 +295,7 @@ public class IDESteps {
 
     @Step("Задать свойство в диалоговом окне редактирования параметра")
     public static void SetValueInDialogWindow(String WhatChange, String ByChange) throws InterruptedException {
-        // ChangeLanguageKeybord("en");
+        ChangeLanguageKeybord("en");
         WebElement treeElement26 = driver2.findElementByName(WhatChange);
         actionProvider.click(treeElement26).sendKeys(ByChange).perform();
         actionProvider.sendKeys(Keys.ENTER).perform();
