@@ -295,7 +295,7 @@ public class IDESteps {
 
     @Step("Задать свойство в диалоговом окне редактирования параметра")
     public static void SetValueInDialogWindow(String WhatChange, String ByChange) throws InterruptedException {
-        ChangeLanguageKeybord("en");
+        // ChangeLanguageKeybord("en");
         WebElement treeElement26 = driver2.findElementByName(WhatChange);
         actionProvider.click(treeElement26).sendKeys(ByChange).perform();
         actionProvider.sendKeys(Keys.ENTER).perform();
