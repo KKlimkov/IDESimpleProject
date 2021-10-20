@@ -104,7 +104,7 @@ public class TestCreateProject {
         IDESteps.SendNewRTFiles();
     }
 
-    @DisplayName("Закрытие проекта")
+  /*  @DisplayName("Закрытие проекта")
     @Test
     @Story("BaseObjects Pump")
     @Tags({@Tag("IDE"),@Tag("Close")})
@@ -113,7 +113,7 @@ public class TestCreateProject {
             IDESteps.CloseProject();
             IDESteps.CloseProject();
         }
-
+  */
     @AfterAll
        static void Stop() throws InterruptedException {
            IDESteps.StopDriver();
