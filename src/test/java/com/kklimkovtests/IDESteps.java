@@ -72,6 +72,7 @@ public class IDESteps {
             System.out.println("Выполнено изменение раскладки клавиатуры на" + Lang);
        // }
         Thread.sleep(500);
+
     }
 
     @Step("Создание проекта")
