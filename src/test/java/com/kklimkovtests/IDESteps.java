@@ -111,6 +111,20 @@ public class IDESteps {
         Thread.sleep(500);
         driver2.findElementByName("Окно").click();
         Thread.sleep(500);
+        int Error = driver2.findElementsByClassName("ScrollViewer").size();
+        if ( Error > 0)
+        {
+            driver2.findElementByName("OK").click();
+            Thread.sleep(500);
+            actionProvider.contextClick(treeElement).perform();
+            Thread.sleep(500);
+            driver2.findElementByName("Добавить").click();
+            Thread.sleep(500);
+            driver2.findElementByName("Окно").click();
+
+        }
+        else
+        Thread.sleep(500);
         System.out.println("Добавлены АРМ и Окно АРМа");
 
     }
