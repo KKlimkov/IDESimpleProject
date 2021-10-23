@@ -67,9 +67,14 @@ public class IDESteps {
         System.out.println(CurrentLang+" "+b+" "+c);
         if (b || c)
         {*/
+            InputContext context = InputContext.getInstance();
+            String CurrentLang = context.getLocale().toString();
+            System.out.println(CurrentLang);
+            if (CurrentLang.equals("ru_RU")){
             String selectAll = Keys.chord(Keys.ALT, Keys.SHIFT);
             actionProvider.sendKeys(selectAll).perform();
             System.out.println("Выполнено изменение раскладки клавиатуры на" + Lang);
+            }
        // }
         Thread.sleep(500);
 
