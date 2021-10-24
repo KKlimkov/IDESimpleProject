@@ -18,6 +18,7 @@ public class TestCreateProject {
     static void setUp() throws InterruptedException, IOException {
         //IDESteps.StartDriver();
         IDESteps.LaunchAPP("Root","10");
+        IDESteps.ChangeLanguageKeybord("en");
     }
     String host = System.getProperty("HostIP");
 
