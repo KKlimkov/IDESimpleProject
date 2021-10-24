@@ -67,10 +67,11 @@ public class IDESteps {
         System.out.println(CurrentLang+" "+b+" "+c);
         if (b || c)
         {*/
-            InputContext context = InputContext.getInstance();
-            String CurrentLang = context.getLocale().toString();
-            System.out.println(CurrentLang);
-            if (CurrentLang.equals("ru_RU")){
+        //InputContext context = InputContext.getInstance();
+        //    String CurrentLang = context.getLocale().toString();
+        int treeElement = driver2.findElementsByName("Индикатор ввода в области уведомлений - Русский").size();
+            System.out.println(treeElement);
+            if (treeElement > 0){
             String selectAll = Keys.chord(Keys.ALT, Keys.SHIFT);
             actionProvider.sendKeys(selectAll).perform();
             System.out.println("Выполнено изменение раскладки клавиатуры на" + Lang);
